@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven {
+		url "https://packages.confluent.io/maven"
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.apache.kafka:kafka-streams'
+	implementation 'org.springframework.kafka:spring-kafka'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+	// https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
+	implementation 'org.springframework.kafka:spring-kafka:2.8.7'
+
+	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams
+	implementation 'org.apache.kafka:kafka-streams:6.2.0-ccs'
+
+	// https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+	implementation 'org.apache.kafka:kafka-clients:6.2.0-ccs'
+
+	// https://mvnrepository.com/artifact/io.confluent/kafka-streams-avro-serde
+	implementation 'io.confluent:kafka-streams-avro-serde:6.2.0'
+
+	// https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer
+	implementation 'io.confluent:kafka-avro-serializer:6.2.0'
+
+	// https://mvnrepository.com/artifact/io.confluent/kafka-schema-registry-client
+	implementation 'io.confluent:kafka-schema-registry-client:6.2.0'
+
+	// https://mvnrepository.com/artifact/org.apache.avro/avro
+	implementation 'org.apache.avro:avro:1.11.0'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
